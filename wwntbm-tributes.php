@@ -54,6 +54,7 @@ class WWNTBM_Tributes {
 
         // Gallery.
         add_filter( 'the_content', array( $this, 'tribute_gallery' ) );
+        add_filter( 'the_excerpt', array( $this, 'tribute_gallery' ) );
     }
 
     /**
