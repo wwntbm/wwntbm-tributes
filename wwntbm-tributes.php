@@ -219,10 +219,6 @@ class WWNTBM_Tributes {
             }
 
             update_field( 'photos', $photo_ids, $post_id );
-
-            if ( ! empty( $photo_ids ) ) {
-                set_post_thumbnail( $post_id, $photo_ids[0] );
-            }
         }
     }
 }
