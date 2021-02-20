@@ -220,10 +220,12 @@ class WWNTBM_Tributes {
             require_once(ABSPATH . 'wp-admin/includes/image.php');
 
             $photo_ids = array();
-            foreach ( $photos as $photo ) {
-                $photo_id = media_sideload_image( $photo, $post_id, null, 'id' );
-                if ( ! is_wp_error( $photo_id ) ) {
-                    $photo_ids[] = $photo_id;
+            if ( $photos ) {
+                foreach ( $photos as $photo ) {
+                    $photo_id = media_sideload_image( $photo, $post_id, null, 'id' );
+                    if ( ! is_wp_error( $photo_id ) ) {
+                        $photo_ids[] = $photo_id;
+                    }
                 }
             }
 
