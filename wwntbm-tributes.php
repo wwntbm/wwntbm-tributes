@@ -51,6 +51,9 @@ class WWNTBM_Tributes {
 
         // ACF.
         add_filter( 'acf/settings/load_json', array( $this, 'load_acf_json' ) );
+
+        // Gallery.
+        add_filter( 'the_content', array( $this, 'tribute_gallery' ) );
     }
 
     /**
@@ -220,6 +223,30 @@ class WWNTBM_Tributes {
 
             update_field( 'photos', $photo_ids, $post_id );
         }
+    }
+
+    /**
+     * Add gallery to tribute content.
+     *
+     * @since 1.0.0
+     *
+     * @param string $content
+     *
+     * @return string
+     */
+    public function tribute_gallery( $content ) {
+        if ( $this->post_type_key !== get_post_type() ) {
+            return $content;
+        }
+
+        $photo_ids = get_field( 'photos' );
+
+        if ( $photo_ids ) {
+            $shortcode = sprintf( '[gallery ids="%s" size="medium" link="file"]', esc_attr( implode( ',', $photo_ids ) ) );
+            $content  .= do_shortcode( $shortcode );
+        }
+
+        return $content;
     }
 }
 WWNTBM_Tributes::get_instance();

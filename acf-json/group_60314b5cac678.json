@@ -1,6 +1,6 @@
 {
     "key": "group_60314b5cac678",
-    "title": "WWNTBM Tribute",
+    "title": "Tributes",
     "fields": [
         {
             "key": "field_60314b621f950",
@@ -53,7 +53,7 @@
                 "class": "",
                 "id": ""
             },
-            "return_format": "array",
+            "return_format": "id",
             "preview_size": "medium",
             "insert": "append",
             "library": "all",
@@ -85,5 +85,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1613843331
+    "modified": 1613856594
 }
