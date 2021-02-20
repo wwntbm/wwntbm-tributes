@@ -172,7 +172,7 @@ class WWNTBM_Tributes {
      * @return array       ACF JSON directories.
      */
     public function load_acf_json( $paths ) {
-        $paths[] = plugin_dir_url( __FILE__ ) . 'acf-json';
+        $paths[] = plugin_dir_path( __FILE__ ) . 'acf-json';
         return $paths;
     }
 
