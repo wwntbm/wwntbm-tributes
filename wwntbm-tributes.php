@@ -17,6 +17,9 @@ class WWNTBM_Tributes {
     /** @var string */
     public $post_type_key = 'wwntbm_tribute';
 
+    /** @var string */
+    public $taxonomy_key = 'wwntbm_tribute_category';
+
 	/**
 	 * Class instance.
 	 *
@@ -126,7 +129,7 @@ class WWNTBM_Tributes {
         );
 
         register_taxonomy(
-            'wwntbm_tribute_category',
+            $this->taxonomy_key,
             array( $this->post_type_key ),
             array(
                 'labels'                     => array(
@@ -202,7 +205,9 @@ class WWNTBM_Tributes {
             'post_status'   => 'pending',
             'post_title'    => trim( $first_name . ' ' . $last_name ),
             'post_content'  => $content,
-            'post_category' => array( $category_id ),
+            'tax_input'     => array(
+                $this->taxonomy_key => array( $category_id ),
+            ),
         );
 
         $post_id = wp_insert_post( $post_content );
