@@ -58,6 +58,8 @@ class WWNTBM_Tributes {
         // Gallery.
         add_filter( 'the_content', array( $this, 'tribute_gallery' ) );
         add_filter( 'the_excerpt', array( $this, 'tribute_gallery' ) );
+
+        add_shortcode( 'wwntbm_tribet', array( $this, 'shortcode' ) );
     }
 
     /**
@@ -255,6 +257,32 @@ class WWNTBM_Tributes {
         }
 
         return $content;
+    }
+
+    /**
+     * Display tributes in a shortcode.
+     *
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function shortcode() {
+        $args = array(
+            'post_type'      => $this->post_type_key,
+            'posts_per_page' => -1,
+            'order'          => 'DESC',
+        );
+
+        $tributes = new WP_Query( $args );
+
+        while ( $tributes->have_posts() ) {
+            $tributes->the_post();
+
+            echo '<h3>' . get_the_title() . '</h3>';
+            echo apply_filters( 'the_content', get_the_content() );
+        }
+
+        wp_reset_postdata();
     }
 }
 WWNTBM_Tributes::get_instance();
