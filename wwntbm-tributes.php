@@ -264,7 +264,7 @@ class WWNTBM_Tributes {
      *
      * @since 1.0.0
      *
-     * @return void
+     * @return string
      */
     public function shortcode() {
         $args = array(
@@ -275,14 +275,16 @@ class WWNTBM_Tributes {
 
         $tributes = new WP_Query( $args );
 
+        ob_start();
         while ( $tributes->have_posts() ) {
             $tributes->the_post();
 
             echo '<h3>' . get_the_title() . '</h3>';
             echo apply_filters( 'the_content', get_the_content() );
         }
-
         wp_reset_postdata();
+
+        return ob_get_clean();
     }
 }
 WWNTBM_Tributes::get_instance();
