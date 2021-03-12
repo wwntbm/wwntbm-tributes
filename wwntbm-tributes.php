@@ -59,7 +59,7 @@ class WWNTBM_Tributes {
         add_filter( 'the_content', array( $this, 'tribute_gallery' ) );
         add_filter( 'the_excerpt', array( $this, 'tribute_gallery' ) );
 
-        add_shortcode( 'wwntbm_tribet', array( $this, 'shortcode' ) );
+        add_shortcode( 'wwntbm_tributes', array( $this, 'shortcode' ) );
     }
 
     /**
