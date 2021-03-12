@@ -266,12 +266,29 @@ class WWNTBM_Tributes {
      *
      * @return string
      */
-    public function shortcode() {
+    public function shortcode( $attributes ) {
+        $attributes = shortcode_atts(
+            array(
+                'term' => null,
+            ),
+            $attributes
+        );
+
         $args = array(
             'post_type'      => $this->post_type_key,
             'posts_per_page' => -1,
             'order'          => 'DESC',
         );
+
+        if ( $attributes['term'] ) {
+            $args['tax_query'] = array(
+                array(
+                    'taxonomy' => $this->taxonomy_key,
+                    'field'    => 'slug',
+                    'terms'    => $attributes['term'],
+                ),
+            );
+        }
 
         $tributes = new WP_Query( $args );
 
